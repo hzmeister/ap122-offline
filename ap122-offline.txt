@@ -1,0 +1,35 @@
+no capwap client enable
+radio profile radio_ng
+radio profile radio_ng phymode 11ng
+no radio profile radio_ng scan access
+no radio profile radio_ng backhaul failover
+security-object home
+security-object home security protocol-suite wpa2-aes-psk ascii-key WIFIpass
+no client-monitor enable
+ssid home
+ssid home security-object home
+ssid home dtim-period 3
+ssid home multicast conversion-to-unicast auto
+interface eth0 native-vlan 1
+interface wifi0 radio profile radio_ng
+interface wifi0 radio channel 1
+interface wifi0 radio power 11
+interface wifi1 mode access
+interface wifi0 ssid home
+no system led power-saving-mode
+system led brightness off
+no report statistic enable
+hostname AerohiveAP
+interface mgt0 ip 192.168.1.8 255.255.255.0
+
+ip route net 0.0.0.0 0.0.0.0 gateway 192.168.1.1
+no interface mgt0 dhcp client
+dns server-ip 192.168.1.1
+ntp server time.google.com
+ntp server time2.google.com second
+ntp interval 360
+clock time-zone -5
+clock time-zone daylight-saving-time 03-10 01:59:59 11-03 01:59:59
+capwap client server name cloud-va2-cws-0.aerohive.com
+application identification shutdown
+save config
